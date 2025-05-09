@@ -9,12 +9,12 @@ import { PaymentsModule } from './fund_account/fund_account.module';
   imports: [
     ConfigModule.forRoot({ 
       isGlobal: true,  // Makes the config accessible throughout the app
-      envFilePath: '.env',  // Loads the variables from the .env file
+      envFilePath: process.env.NODE_ENV == 'production' ? '.env.prod' : 'C:/fund acccount/fund_account/.env',  // Loads the variables from the .env file
     }),
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: 'mysql',
       host: process.env.DATABASE_HOST,  // Use environment variables here
-      port: 5432,
+      port: 3306,
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
